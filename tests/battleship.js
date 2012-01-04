@@ -33,3 +33,14 @@ module.exports.addShip_noShipsOnBoard_shipIsPlaced = function(){
 	assert.equal(true, game.shipAt(player, {x: "A", y:"2"}));
 	assert.equal(true, game.shipAt(player, {x: "A", y:"3"}));
 }
+
+module.exports.addShip_shipAlreadyOnLocation_shipIsNotPlaced = function(){
+	var game = battleship.createGame();
+	var player = { name: "Benny"};
+	game.addPlayer(player);
+	game.addShip("cruiser", {x: "A", y:"1", orientation: "vertical"}, player);
+
+	var added = game.addShip("cruiser", {x: "A", y:"1", orientation: "vertical"}, player);
+
+	assert.equal(false, added);
+}
